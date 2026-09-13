@@ -8,7 +8,9 @@ The project uses a permutation table, gradient vectors, dot products, a fade fun
 
 ## Example
 
-![Perlin Noise Example](images/perlin-noise-example.png)
+![Perlin Noise Example](images/perlin-noise-4-octaves.png)
+
+This is an example of the algorithm with 4 octaves
 
 ## How it works
 
@@ -25,3 +27,32 @@ The fade function used is:
 
 ```text
 6t^5 - 15t^4 + 10t^3
+```
+
+## Octaves
+
+The noise generator also supports multiple octaves.
+
+Each octave samples the same Perlin noise at a different frequency. Higher octaves use a higher frequency, which adds smaller details to the noise map.
+
+The amplitude is reduced for each octave so that the smaller details have less influence on the final result.
+
+For example:
+
+- Octave 1: frequency 1, amplitude 1
+- Octave 2: frequency 2, amplitude 0.5
+- Octave 3: frequency 4, amplitude 0.25
+- Octave 4: frequency 8, amplitude 0.125
+
+The values from each octave are added together and then divided by the total amplitude to keep the final noise value in a sensible range.
+
+Using multiple octaves makes the output look more detailed and natural compared with a single layer of Perlin noise.
+
+## Features
+
+- 2D Perlin noise
+- Seeded permutation table
+- Multiple octaves
+- Adjustable number of octaves
+- NumPy-based calculations
+- Matplotlib visualisation
