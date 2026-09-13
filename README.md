@@ -8,7 +8,7 @@ The project uses a permutation table, gradient vectors, dot products, a fade fun
 
 ## Example
 
-![Perlin Noise Example](images/perlin-noise-4-octaves.png)
+![Perlin Noise Example](images/Perlin-noise-4-octaves.png)
 
 This is an example of the algorithm with 4 octaves
 
