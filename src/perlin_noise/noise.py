@@ -4,7 +4,6 @@ import random
 import matplotlib.pyplot as plt
 
 
-
 class PerlinNoise():
     def __init__(self, seed, octaves):
         self.seed = seed
@@ -12,9 +11,11 @@ class PerlinNoise():
         self.x = 0
         self.y = 0
         self.permutation = []
-        for i in range(256):
-            self.permutation.append(i)
-        random.shuffle(self.permutation)
+        for _ in range(2):
+            for i in range(256):
+                self.permutation.append(i)
+        rng = random.Random(self.seed)
+        rng.shuffle(self.permutation)
 
     def find_location(self, x, y):
         self.x = x - int(x)
@@ -70,8 +71,36 @@ class PerlinNoise():
         #print(self.fin_lerp)
         return self.fin_lerp
 
+    def noise(self, x, y):
+        self.find_location(x, y)
+        self.get_gradients()
+        self.distance()
+        self.dot_product()
+        self.fade()
+        result = self.lerp()
+        return result
 
-test1 = PerlinNoise(1)
+    def octave_noise(self, x, y):
+        total = 0
+        frequency = 1
+        amplitude = 1
+        max_amplitude = 0
+
+        for _ in range(self.octaves):
+            total += self.noise(
+                x * frequency,
+                y * frequency
+            ) * amplitude
+
+            max_amplitude += amplitude
+
+            frequency *= 2
+            amplitude *= 0.5
+
+        return total / max_amplitude
+
+
+test1 = PerlinNoise(random.randint(0,1000000000), 2)
 
 noise_map = []
 
@@ -81,12 +110,7 @@ for y in range(100):
     for x in range(100):
         x_val = x * 0.05
         y_val = y * 0.05
-        test1.find_location(x_val, y_val)
-        test1.get_gradients()
-        test1.distance()
-        test1.dot_product()
-        test1.fade()
-        result = test1.lerp()
+        result = test1.octave_noise(x_val, y_val)
         row.append(result)
 
     noise_map.append(row)
