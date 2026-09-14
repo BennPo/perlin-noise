@@ -24,10 +24,10 @@ class PerlinNoise():
         self.y_coord = int(y)
 
     def distance(self):
-        self.distance_to_tl =  (self.x, 1-self.y)
+        self.distance_to_tl =  (-self.x, 1-self.y)
         self.distance_to_tr = (1-self.x, 1-self.y)
-        self.distance_to_bl = (self.x, self.y)
-        self.distance_to_br = (1-self.x, self.y)
+        self.distance_to_bl = (-self.x, -self.y)
+        self.distance_to_br = (1-self.x, -self.y)
     
     def dot_product(self):
         self.tl_dot = np.dot(self.vec_tl, self.distance_to_tl)
