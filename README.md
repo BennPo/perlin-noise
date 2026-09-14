@@ -67,3 +67,7 @@ Using multiple octaves makes the output look more detailed and natural compared 
 - Adjustable number of octaves
 - NumPy-based calculations
 - Matplotlib visualisation
+
+## Tutorial
+
+For a full guide on using the package, see the [tutorial](docs/tutorial.md).
