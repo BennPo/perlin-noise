@@ -1,3 +1,3 @@
-from .noise import PerlinNoise
+from .noise import PerlinNoise, generate_noise
 
-__all__ = ["PerlinNoise"]
+__all__ = ["PerlinNoise", "generate_noise"]

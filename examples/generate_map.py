@@ -1,27 +1,23 @@
 import numpy as np
-import random
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-from perlin_noise import PerlinNoise
+from perlin_noise import generate_noise
 
-test1 = PerlinNoise(random.randint(0,1000000000), 4)
+# Generates nosie map
+noise_map = generate_noise(130105, 4)
 
-noise_map = []
-
-for y in range(100):
-    row = []
-
-    for x in range(100):
-        x_val = x * 0.05
-        y_val = y * 0.05
-        result = test1.octave_noise(x_val, y_val)
-        row.append(result)
-
-    noise_map.append(row)
-
-
-noise_map = np.array(noise_map)
-
+# shows 2D nosie map
 plt.imshow(noise_map, cmap="gray")
 plt.colorbar()
+plt.show()
+
+
+# it can be used as a hight map in 3d
+x, y = np.meshgrid(range(noise_map.shape[0]), range(noise_map.shape[1]))
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(x, y, noise_map)
+plt.title('z as 3d height map')
 plt.show()
