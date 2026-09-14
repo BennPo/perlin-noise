@@ -8,9 +8,20 @@ The project uses a permutation table, gradient vectors, dot products, a fade fun
 
 ## Example
 
-![Perlin Noise Example](images/Perlin-noise-4-octaves.png)
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/perlin-noise-1-octave.png" width="350"><br>
+      <b>1 Octave</b>
+    </td>
+    <td align="center">
+      <img src="images/Perlin-noise-4-octaves.png" width="350"><br>
+      <b>4 Octaves</b>
+    </td>
+  </tr>
+</table>
 
-This is an example of the algorithm with 4 octaves
+Both examples below were generated using seed `130105`.
 
 ## How it works
 
